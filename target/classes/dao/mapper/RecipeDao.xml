@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>    
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.RecipeDao">
+	<!--设置bo类和数据库中表的字段一一对应，注意数据库字段和domain类中的字段名称一致 -->
+	<resultMap id="RecipeResultMap" type="bo.RecipeDomain">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="recipe_name" property="recipeName" jdbcType="VARCHAR" />
+		<result column="type" property="type" jdbcType="VARCHAR" />
+		<result column="category" property="category" jdbcType="VARCHAR" />
+		<result column="created_tm" property="created_tm" jdbcType="TIMESTAMP" />
+		<result column="updated_tm" property="updated_tm" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<!--新增菜谱数据 -->
+	<insert id="createRecipe" parameterType="bo.RecipeDomain">
+		INSERT INTO
+		recipe
+		(recipe_name, type, category)
+		VALUES
+		(
+		#{recipeName},
+		#{type},
+		#{category}
+		)
+	</insert>
+
+	<!-- 更新菜谱数据 -->
+	<update id="updateRecipe" parameterType="bo.RecipeDomain">
+		UPDATE recipe
+		<trim prefix="set" suffixOverrides=",">
+			<if test="recipeName != null">recipe_name = #{recipeName},</if>
+			<if test="type != null">type = #{type},</if>
+			<if test="category != null">category = #{category},</if>
+		</trim>
+		WHERE
+		id = #{id}
+	</update>
+
+	<!-- 查询菜谱数据 -->
+	<select id="queryRecipe" parameterType="bo.RecipeDomain"
+		resultMap="RecipeResultMap">
+		SELECT * FROM
+		recipe
+		WHERE id = #{id}
+	</select>
+
+	<!-- 删除菜谱数据 -->
+	<delete id="deleteRecipe" parameterType="bo.RecipeDomain">
+		DELETE FROM recipe
+		WHERE
+		id = #{id}
+	</delete>
+
+</mapper>  

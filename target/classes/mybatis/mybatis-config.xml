@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-config.dtd">  
+<!-- 这里没有什么内容，因为都被放到application.xml中去了-->
+<!-- 给自己的问题：如果放在这儿，怎么放 -->
+<configuration>    
+</configuration>

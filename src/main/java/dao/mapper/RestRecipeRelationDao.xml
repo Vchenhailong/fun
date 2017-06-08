@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>    
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.RestRecipeRelationDao">
+	<!--设置bo类和数据库中表的字段一一对应，注意数据库字段和domain类中的字段名称一致 -->
+	<resultMap id="RelationResultMap" type="bo.RestRecipeRelationDomain">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="restaurant_id" property="restaurantId" jdbcType="INTEGER" />
+		<result column="recipe_id" property="recipeId" jdbcType="INTEGER" />
+		<result column="recipe_price" property="recipePrice" jdbcType="INTEGER" />
+		<result column="status" property="status" jdbcType="ENUM" />
+		<result column="created_tm" property="created_tm" jdbcType="TIMESTAMP" />
+		<result column="updated_tm" property="updated_tm" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<!--新增餐厅与菜谱的关联数据 -->
+	<insert id="createRestRecipeRelation" parameterType="bo.RestRecipeRelationDomain">
+		INSERT INTO
+		rest_recipe_relation
+		(restaurant_id, recipe_id, recipe_price)
+		VALUES
+		(
+		#{restaurantId},
+		#{recipeId},
+		#{recipePrice}
+		)
+	</insert>
+
+	<!-- 更新餐厅与菜谱的关联数据 -->
+	<update id="updateRestRecipeRelation" parameterType="bo.RestRecipeRelationDomain">
+		UPDATE rest_recipe_relation
+		<trim prefix="set" suffixOverrides=",">
+			<if test="restaurantId != null">restaurant_id = #{recipeName},</if>
+			<if test="recipeId != null">recipe_id = #{recipeId},</if>
+			<if test="recipePrice != null">recipe_price = #{recipePrice},</if>
+		</trim>
+		WHERE
+		id = #{id}
+	</update>
+
+	<!-- 查询餐厅与菜谱的关联数据 -->
+	<select id="queryRestRecipeRelation" parameterType="bo.RestRecipeRelationDomain"
+		resultMap="RelationResultMap">
+		SELECT * FROM
+		rest_recipe_relation
+		WHERE id = #{id}
+	</select>
+
+	<!-- 删除餐厅与菜谱的关联数据 -->
+	<delete id="deleteRestRecipeRelation" parameterType="bo.RestRecipeRelationDomain">
+		DELETE FROM rest_recipe_relation
+		WHERE
+		id = #{id}
+	</delete>
+
+</mapper>  
