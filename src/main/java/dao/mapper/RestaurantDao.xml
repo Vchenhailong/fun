@@ -4,7 +4,7 @@
 <mapper namespace="dao.RestaruantDao">
 	<!--设置bo类和数据库中表的字段一一对应，注意数据库字段和domain类中的字段名称一致 -->
 	<resultMap id="RestaurantResultMap" type="bo.RestaurantDomain">
-		<id column="id" property="id" jdbcType="INTEGER" />
+		<id column="id" property="id" jdbcType="NUMERIC" />
 		<result column="restaurant_name" property="restaurant_name"
 			jdbcType="VARCHAR" />
 		<result column="addr" property="addr" jdbcType="VARCHAR" />

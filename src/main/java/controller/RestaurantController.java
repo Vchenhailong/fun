@@ -13,19 +13,19 @@ public class RestaurantController {
 	@Autowired
 	private RestaurantFacade restaurantFacade;
 	
-	@RequestMapping("/createRestaurant")
-	public RestaurantDomain createRestaurant(RestaurantDomain restaurant){
+	@RequestMapping("/createRestaurant.do")
+	public void createRestaurant(RestaurantDomain restaurant){
 		
-		return restaurantFacade.createRestaurant(restaurant);
+		restaurantFacade.createRestaurant(restaurant);
 	}
 	
-	@RequestMapping("/updateRestaurant")
-	public RestaurantDomain updateRestaurant(RestaurantDomain restaurant){
+	@RequestMapping("/updateRestaurant.do")
+	public void updateRestaurant(RestaurantDomain restaurant){
 		
-		return restaurantFacade.updateRestaurant(restaurant);
+		restaurantFacade.updateRestaurant(restaurant);
 		
 	}
-	@RequestMapping("/queryRestaurant")
+	@RequestMapping("/queryRestaurant.do")
 	public RestaurantDomain queryRestaurant(RestaurantDomain restaurant){
 		
 		return restaurantFacade.queryRestaurant(restaurant);

@@ -12,7 +12,7 @@ public class RestaurantFacadeImpl implements RestaurantFacade {
 	@Autowired
 	private RestaruantDao restaurantDao;
 
-	public RestaurantDomain createRestaurant(RestaurantDomain restaurant) {
+	public void createRestaurant(RestaurantDomain restaurant) {
 		
 		if(restaurant.getAddr() != null && restaurant.getRestaurant_name() !=null && restaurant.getTel() != null){
 			 restaurantDao.createRestaurant(restaurant);
@@ -20,11 +20,10 @@ public class RestaurantFacadeImpl implements RestaurantFacade {
 		else {
 			System.out.println("餐厅名/地址/联系电话不能为空");
 		}
-		return restaurant;
 }
 
 	@Override
-	public RestaurantDomain updateRestaurant(RestaurantDomain restaurant) {
+	public void updateRestaurant(RestaurantDomain restaurant) {
 		// TODO Auto-generated method stub
 		try{
 			if( restaurant.getId() != null ){
@@ -36,7 +35,6 @@ public class RestaurantFacadeImpl implements RestaurantFacade {
 		catch(Exception e){
 			e.printStackTrace();
 		}
-		return null;
 	}
 
 	@Override
@@ -56,8 +54,7 @@ public class RestaurantFacadeImpl implements RestaurantFacade {
 }
 
 	@Override
-	public RestaurantDomain deleteRestaurant(RestaurantDomain restaurant) {
+	public void deleteRestaurant(RestaurantDomain restaurant) {
 		// TODO Auto-generated method stub
-		return null;
 	}
 }

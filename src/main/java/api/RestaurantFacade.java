@@ -4,13 +4,13 @@ import bo.RestaurantDomain;
 
 public interface RestaurantFacade {
 	
-	RestaurantDomain createRestaurant(RestaurantDomain restaurant);
+	void createRestaurant(RestaurantDomain restaurant);
 	
-	RestaurantDomain updateRestaurant(RestaurantDomain restaurant);
+	void updateRestaurant(RestaurantDomain restaurant);
 	
 	RestaurantDomain queryRestaurant(RestaurantDomain restaurant);
 
-	RestaurantDomain deleteRestaurant(RestaurantDomain restaurant);
+	void deleteRestaurant(RestaurantDomain restaurant);
 
 
 }
