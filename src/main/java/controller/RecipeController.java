@@ -70,7 +70,6 @@ public class RecipeController {
 	@ResponseBody
 	public List<RecipeDomain> getAllRecipe(@RequestBody RecipeDomain recipe) {
 		return recipeFacade.getAllRecipeList(recipe);
-
 	}
 
 }

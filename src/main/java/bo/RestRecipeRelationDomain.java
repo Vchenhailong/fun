@@ -1,5 +1,7 @@
 package bo;
 
+import java.util.Date;
+
 import enums.RestRecipeRelationStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,9 +24,9 @@ public class RestRecipeRelationDomain {
 	
 	private RestRecipeRelationStatus status;
 	
-	private Integer created_tm;
+	private Date created_tm;
 
-	private Integer updated_tm;
+	private Date updated_tm;
 	
 	public boolean check(){
 		if(restaurantId == null || recipeId == null){
