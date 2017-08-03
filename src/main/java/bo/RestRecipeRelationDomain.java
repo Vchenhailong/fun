@@ -1,8 +1,5 @@
 package bo;
 
-import java.util.Date;
-
-import bo.RestaurantDomain.RestaurantDomainBuilder;
 import enums.RestRecipeRelationStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,7 +31,7 @@ public class RestRecipeRelationDomain {
 			throw new RuntimeException("餐厅/菜单为空");
 		}
 		if(recipePrice < 0){
-			throw new RuntimeException("单价必须大于0元");
+			throw new RuntimeException("单价必须不小于0元");
 		}
 		return true;
 		}

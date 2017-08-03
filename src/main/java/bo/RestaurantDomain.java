@@ -15,7 +15,7 @@ public class RestaurantDomain {
 
 	private Integer id;
 	//名称
-	private String restaurant_name;
+	private String restaurantName;
 	//地址
 	private String addr;
 	//联系电话

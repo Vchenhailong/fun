@@ -1,5 +1,7 @@
 package service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +19,7 @@ public class RecipeFacadeImpl implements RecipeFacade {
 
 		try {
 			if (recipeDomain.getRecipeName() != null && recipeDomain.getCategory() != null
-					&& recipeDomain.getType() != null) {
+					&& recipeDomain.getRecipeType() != null) {
 				recipeDao.createRecipe(recipeDomain);
 			}
 		} catch (Exception e) {
@@ -38,7 +40,7 @@ public class RecipeFacadeImpl implements RecipeFacade {
 
 	@Override
 	public void updateRecipe(RecipeDomain recipeDomain) {
-		
+
 		if (recipeDomain.getId() != null) {
 
 			// 更新前先查询数据是否存在
@@ -65,6 +67,22 @@ public class RecipeFacadeImpl implements RecipeFacade {
 			System.out.println("菜谱不存在");
 			e.printStackTrace();
 		}
+
+	}
+
+	@Override
+	public List<RecipeDomain> getAllRecipeList(RecipeDomain recipeDomain) {
+
+		try {
+//			if (recipeDomain.getId() != null || recipeDomain.getCategory() != null
+//					|| recipeDomain.getRecipeName() != null || recipeDomain.getRecipeType() != null) {
+				 return recipeDao.getAllRecipe(recipeDomain);
+//			}
+		} catch (Exception e) {
+			System.out.println("菜谱不存在");
+			e.printStackTrace();
+		}
+		return null;
 
 	}
 

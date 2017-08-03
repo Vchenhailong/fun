@@ -27,7 +27,7 @@ public class RecipeTest {
 		RecipeDomain recipeDomain = new RecipeDomain();
 		recipeDomain.setRecipeName("南城家院");
 		recipeDomain.setCategory(RecipeCategory.soup);
-		recipeDomain.setType(RecipeType.xiangcai);
+		recipeDomain.setRecipeType(RecipeType.xiangcai);
 		recipeFacade.createRecipe(recipeDomain);
 	}
 	

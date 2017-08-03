@@ -1,5 +1,7 @@
 package api;
 
+import java.util.List;
+
 import bo.RecipeDomain;
 
 public interface RecipeFacade {
@@ -11,5 +13,7 @@ public interface RecipeFacade {
 	void updateRecipe(RecipeDomain recipeDomain);
 	
 	void deleteRecipe(RecipeDomain recipeDomain);
+	
+	List<RecipeDomain> getAllRecipeList(RecipeDomain recipeDomain);
 
 }

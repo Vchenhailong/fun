@@ -6,7 +6,7 @@
 	<resultMap id="RecipeResultMap" type="bo.RecipeDomain">
 		<id column="id" property="id" jdbcType="NUMERIC" />
 		<result column="recipe_name" property="recipeName" jdbcType="VARCHAR" />
-		<result column="type" property="type" jdbcType="VARCHAR" />
+		<result column="recipe_type" property="recipeType" jdbcType="VARCHAR" />
 		<result column="category" property="category" jdbcType="VARCHAR" />
 		<result column="created_tm" property="created_tm" jdbcType="TIMESTAMP" />
 		<result column="updated_tm" property="updated_tm" jdbcType="TIMESTAMP" />
@@ -16,11 +16,11 @@
 	<insert id="createRecipe" parameterType="bo.RecipeDomain">
 		INSERT INTO
 		recipe
-		(recipe_name, type, category)
+		(recipe_name, recipe_type, category)
 		VALUES
 		(
 		#{recipeName},
-		#{type},
+		#{recipeType},
 		#{category}
 		)
 	</insert>
@@ -30,7 +30,7 @@
 		UPDATE recipe
 		<trim prefix="set" suffixOverrides=",">
 			<if test="recipeName != null">recipe_name = #{recipeName},</if>
-			<if test="type != null">type = #{type},</if>
+			<if test="recipeType != null">recipe_type = #{recipeType},</if>
 			<if test="category != null">category = #{category},</if>
 		</trim>
 		WHERE
@@ -51,5 +51,11 @@
 		WHERE
 		id = #{id}
 	</delete>
+
+	<!-- 查询全部菜谱数据 -->
+	<select id="getAllRecipe" parameterType="bo.RecipeDomain"
+		resultMap="RecipeResultMap">
+		SELECT * FROM recipe;
+	</select>
 
 </mapper>  

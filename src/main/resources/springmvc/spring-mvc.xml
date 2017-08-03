@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>  
 <beans xmlns="http://www.springframework.org/schema/beans"  
-  xmlns:p="http://www.springframework.org/schema/p"  
+  xmlns:aop="http://www.springframework.org/schema/aop"  
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
   xmlns:context="http://www.springframework.org/schema/context"  
   xmlns:mvc="http://www.springframework.org/schema/mvc"  
@@ -12,10 +12,39 @@
     http://www.springframework.org/schema/mvc  
     http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">  
        
-    <!-- 扫描controller（controller层注入） -->  
+    <!-- 把标记了@Controller注解的类转换为bean（controller层注入） -->  
    <context:component-scan base-package="controller"/>    
-       
-   <!-- 对模型视图添加前后缀 -->  
-     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"  
-      p:prefix="/WEB-INF/view/" p:suffix=".jsp"/>  
+   <!--默认的mvc注解映射的支持 -->
+    <mvc:annotation-driven/>
+   
+   <!--start:使用Jackson 2.x的配置，需要导入的jar包：jackson-core-xxx.jar、jackson-annotations-xxx.jar、jackson-databind-xxx.jar-->
+<!--通过处理器映射DefaultAnnotationHandlerMapping来开启支持@Controller注解-->
+<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />
+<!--通过处理器适配器AnnotationMethodHandlerAdapter来开启支持@RequestMapping注解-->
+<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+    <property name="messageConverters">
+        <list>
+            <!-- 设置返回字符串编码 -->
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name = "supportedMediaTypes">
+                    <list>
+                        <value>text/html;charset=UTF-8</value>
+                        <value>application/json;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+            <!-- json转换器 -->
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/html;charset=UTF-8</value>
+                        <value>application/json;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+        </list>
+    </property>
+</bean>
+<!--end:使用Jackson 2.x的配置，需要导入的jar包：jackson-core-xxx.jar、jackson-annotations-xxx.jar、jackson-databind-xxx.jar-->
+   
 </beans>  

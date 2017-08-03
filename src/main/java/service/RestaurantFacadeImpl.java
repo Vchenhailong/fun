@@ -1,8 +1,10 @@
 package service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.springframework.web.bind.annotation.RequestBody;
 import api.RestaurantFacade;
 import bo.RestaurantDomain;
 import dao.RestaruantDao;
@@ -12,9 +14,9 @@ public class RestaurantFacadeImpl implements RestaurantFacade {
 	@Autowired
 	private RestaruantDao restaurantDao;
 
-	public void createRestaurant(RestaurantDomain restaurant) {
+	public void createRestaurant(@RequestBody RestaurantDomain restaurant) {
 		
-		if(restaurant.getAddr() != null && restaurant.getRestaurant_name() !=null && restaurant.getTel() != null){
+		if(restaurant.getAddr() != null && restaurant.getRestaurantName() !=null && restaurant.getTel() != null){
 			 restaurantDao.createRestaurant(restaurant);
 	}
 		else {
@@ -56,5 +58,15 @@ public class RestaurantFacadeImpl implements RestaurantFacade {
 	@Override
 	public void deleteRestaurant(RestaurantDomain restaurant) {
 		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public List<RestaurantDomain> getRestaurantList(RestaurantDomain restaurant) {
+		try{
+			return restaurantDao.getRestaurantList(restaurant);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

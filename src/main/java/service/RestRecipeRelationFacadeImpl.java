@@ -75,7 +75,10 @@ public class RestRecipeRelationFacadeImpl implements RestRecipeRelationFacade {
 	@Override
 	// 删除餐厅与菜谱的关联
 	public void deleteRestRecipeRelation(RestRecipeRelationDomain restRecipeRelationDomain) {
-		// TODO Auto-generated method stub
+		
+		if (restRecipeRelationDomain.getId() == null) {
+			throw new RuntimeException("数据不存在");
+		}
 
 	}
 

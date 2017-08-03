@@ -30,7 +30,7 @@
 	<update id="updateRestRecipeRelation" parameterType="bo.RestRecipeRelationDomain">
 		UPDATE rest_recipe_relation
 		<trim prefix="set" suffixOverrides=",">
-			<if test="restaurantId != null">restaurant_id = #{recipeName},</if>
+			<if test="restaurantId != null">restaurant_id = #{restaurantId},</if>
 			<if test="recipeId != null">recipe_id = #{recipeId},</if>
 			<if test="recipePrice != null">recipe_price = #{recipePrice},</if>
 		</trim>

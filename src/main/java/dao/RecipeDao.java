@@ -1,5 +1,8 @@
 package dao;
 
+
+import java.util.List;
+
 import bo.RecipeDomain;
 
 public interface RecipeDao {
@@ -11,5 +14,7 @@ public interface RecipeDao {
 	void updateRecipe(RecipeDomain recipeDomain);
 	
 	void deleteRecipe(RecipeDomain recipeDomain);
+	
+	List<RecipeDomain> getAllRecipe(RecipeDomain recipeDomain);
 
 }

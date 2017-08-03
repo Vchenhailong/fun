@@ -23,7 +23,7 @@ public class RestaurantTest {
 	public void createRestaurantTest(){
 		try{
 		RestaurantDomain restaurantDomain = new RestaurantDomain();
-		restaurantDomain.setRestaurant_name("炊烟时代");
+		restaurantDomain.setRestaurantName("炊烟时代");
 		restaurantDomain.setAddr("taskin");
 		restaurantDomain.setTel("13913913913");
 		restaurantFacade.createRestaurant(restaurantDomain);
@@ -37,7 +37,7 @@ public class RestaurantTest {
 	public void noRestaurantNameTest(){
 		try{
 		RestaurantDomain restaurantDomain = new RestaurantDomain();
-		restaurantDomain.setRestaurant_name(null);
+		restaurantDomain.setRestaurantName(null);
 		restaurantDomain.setAddr("taskin");
 		restaurantDomain.setTel("13913913913");
 		restaurantFacade.createRestaurant(restaurantDomain);
@@ -53,7 +53,7 @@ public class RestaurantTest {
 			RestaurantDomain restaurantDomain = new RestaurantDomain();
 			restaurantDomain.setId(1);
 			restaurantDomain.setTel("13900000001");
-			restaurantDomain.setRestaurant_name("new炊烟时代1");
+			restaurantDomain.setRestaurantName("new炊烟时代1");
 			restaurantFacade.updateRestaurant(restaurantDomain);
 		}catch(Exception e){
 			e.printStackTrace();

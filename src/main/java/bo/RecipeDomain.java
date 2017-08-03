@@ -2,7 +2,6 @@ package bo;
 
 import java.util.Date;
 
-import bo.RestaurantDomain.RestaurantDomainBuilder;
 import enums.RecipeCategory;
 import enums.RecipeType;
 import lombok.AllArgsConstructor;
@@ -15,16 +14,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RecipeDomain {
-	
+
 	private Integer id;
-	
+	// 菜名
 	private String recipeName;
-	
-	private RecipeType type;
-	
+	// 菜系
+	private RecipeType recipeType;
+	// 类别种类
 	private RecipeCategory category;
-	
+
 	private Date created_tm;
-	
+
 	private Date updated_tm;
 }

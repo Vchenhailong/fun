@@ -5,7 +5,7 @@
 	<!--设置bo类和数据库中表的字段一一对应，注意数据库字段和domain类中的字段名称一致 -->
 	<resultMap id="RestaurantResultMap" type="bo.RestaurantDomain">
 		<id column="id" property="id" jdbcType="NUMERIC" />
-		<result column="restaurant_name" property="restaurant_name"
+		<result column="restaurant_name" property="restaurantName"
 			jdbcType="VARCHAR" />
 		<result column="addr" property="addr" jdbcType="VARCHAR" />
 		<result column="tel" property="tel" jdbcType="VARCHAR" />
@@ -21,7 +21,7 @@
 		restaurant (restaurant_name, addr, tel, tag, location)
 		VALUES
 		(
-		#{restaurant_name},
+		#{restaurantName},
 		#{addr},
 		#{tel},
 		#{tag},
@@ -32,15 +32,12 @@
 	<!-- 更新餐厅数据 -->
 	<update id="updateRestaurant" parameterType="bo.RestaurantDomain">
 		UPDATE restaurant
-		<!-- <set>
-			<if test="restaurant_name != null">restaurant_name = #{restaurant_name},</if>
-			<if test="addr != null">addr = #{addr},</if>
-			<if test="tel != null">tel = #{tel},</if>
-			<if test="tag != null">tag = #{tag},</if>
-			<if test="location != null">location = #{location},</if>
-		</set> -->
+		<!-- <set> <if test="restaurantName != null">restaurant_name = #{restaurantName},</if> 
+			<if test="addr != null">addr = #{addr},</if> <if test="tel != null">tel = 
+			#{tel},</if> <if test="tag != null">tag = #{tag},</if> <if test="location 
+			!= null">location = #{location},</if> </set> -->
 		<trim prefix="set" suffixOverrides=",">
-			<if test="restaurant_name != null">restaurant_name = #{restaurant_name},</if>
+			<if test="restaurantName != null">restaurant_name = #{restaurantName},</if>
 			<if test="addr != null">addr = #{addr},</if>
 			<if test="tel != null">tel = #{tel},</if>
 			<if test="tag != null">tag = #{tag},</if>
@@ -56,6 +53,13 @@
 		SELECT * FROM
 		restaurant
 		WHERE id = #{id}
+	</select>
+
+	<!-- 查询所有餐厅 -->
+	<select id="getRestaurantList" parameterType="bo.RestaurantDomain"
+		resultMap="RestaurantResultMap">
+		SELECT * FROM
+		restaurant
 	</select>
 
 </mapper>  
