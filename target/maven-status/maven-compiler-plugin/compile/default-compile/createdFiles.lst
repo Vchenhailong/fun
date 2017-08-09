@@ -8,7 +8,6 @@ dao/RestaruantDao.class
 enums/RecipeCategory.class
 bo/RecipeDomain$RecipeDomainBuilder.class
 api/RecipeFacade.class
-tools/exception/ErrorCode.class
 controller/RestaurantController.class
 service/RestRecipeRelationFacadeImpl.class
 bo/RestaurantDomain$RestaurantDomainBuilder.class
@@ -19,6 +18,4 @@ enums/RestRecipeRelationStatus.class
 service/RecipeFacadeImpl.class
 api/RestRecipeRelationFacade.class
 controller/RestRecipeRelationController.class
-service/UserFacadeImpl.class
-api/UserFacade.class
 dao/RestRecipeRelationDao.class

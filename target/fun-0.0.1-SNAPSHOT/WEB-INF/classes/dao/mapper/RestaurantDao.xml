@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>    
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.RestaruantDao">
+	<!--设置bo类和数据库中表的字段一一对应，注意数据库字段和domain类中的字段名称一致 -->
+	<resultMap id="RestaurantResultMap" type="bo.RestaurantDomain">
+		<id column="id" property="id" jdbcType="NUMERIC" />
+		<result column="restaurant_name" property="restaurantName"
+			jdbcType="VARCHAR" />
+		<result column="addr" property="addr" jdbcType="VARCHAR" />
+		<result column="tel" property="tel" jdbcType="VARCHAR" />
+		<result column="tag" property="tag" jdbcType="VARCHAR" />
+		<result column="location" property="location" jdbcType="VARCHAR" />
+		<result column="created_tm" property="created_tm" jdbcType="TIMESTAMP" />
+		<result column="updated_tm" property="updated_tm" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<!--新增餐厅数据 -->
+	<insert id="createRestaurant" parameterType="bo.RestaurantDomain">
+		INSERT INTO
+		restaurant (restaurant_name, addr, tel, tag, location)
+		VALUES
+		(
+		#{restaurantName},
+		#{addr},
+		#{tel},
+		#{tag},
+		#{location}
+		)
+	</insert>
+
+	<!-- 更新餐厅数据 -->
+	<update id="updateRestaurant" parameterType="bo.RestaurantDomain">
+		UPDATE restaurant
+		<!-- <set> <if test="restaurantName != null">restaurant_name = #{restaurantName},</if> 
+			<if test="addr != null">addr = #{addr},</if> <if test="tel != null">tel = 
+			#{tel},</if> <if test="tag != null">tag = #{tag},</if> <if test="location 
+			!= null">location = #{location},</if> </set> -->
+		<trim prefix="set" suffixOverrides=",">
+			<if test="restaurantName != null">restaurant_name = #{restaurantName},</if>
+			<if test="addr != null">addr = #{addr},</if>
+			<if test="tel != null">tel = #{tel},</if>
+			<if test="tag != null">tag = #{tag},</if>
+			<if test="location != null">location = #{location},</if>
+		</trim>
+		WHERE
+		id = #{id}
+	</update>
+
+	<!-- 查询餐厅数据 -->
+	<select id="queryRestaurant" parameterType="bo.RestaurantDomain"
+		resultMap="RestaurantResultMap">
+		SELECT * FROM
+		restaurant
+		WHERE id = #{id}
+	</select>
+
+	<!-- 查询所有餐厅 -->
+	<select id="getRestaurantList" parameterType="bo.RestaurantDomain"
+		resultMap="RestaurantResultMap">
+		SELECT * FROM
+		restaurant
+	</select>
+
+</mapper>  
